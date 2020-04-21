@@ -1,0 +1,26 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MedicineSearch>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+
+@{
+	Layout = "LandingmasterForm.cshtml";
+}
+<section class="container main-section clearfix" style="display:none;">
+                <section class="content float-left">
+                </section>
+                <aside class="sidebar float-right">     
+                </aside>
+            </section>
+<section class="container main-section clearfix">
+               
+                <h1>Asthma</h1>
+                <div class="content float-right">
+                    
+  <div id="page" class="page-global">
+@Umbraco.Field("mainContent")
+ </div>
+</div>
+
+<aside class="sidebar float-left">
+               @Umbraco.RenderMacro("sidebarWidget")
+                </aside>
+            </section>

@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.TextOwlSlider>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "OwlMaster.cshtml";
+}
+<section class="container main-section clearfix" style="display:none;">
+                <section class="content float-left">
+                </section>
+                <aside class="sidebar float-right">     
+                </aside>
+            </section>
+<section class="container main-section clearfix">
+               
+               @Umbraco.RenderMacro("PageHeader")
+                <div class="content float-right">
+                    
+  <div id="page" class="page-global">
+      
+     @Umbraco.Field("mainContent")
+     
+     @Umbraco.Field("secondaryContent")
+   </div>
+</div>
+
+<aside class="sidebar float-left">
+               @Umbraco.RenderMacro("sidebarWidget")
+                </aside>
+            </section>

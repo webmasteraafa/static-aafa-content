@@ -1,0 +1,88 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/media/2184/aafa.ico" type="image/x-icon" />
+    <meta name="google-site-verification" content="iYpR_XUc8j0Uc4UZ-z0B7SGoqzhOdqFCZVvWs4T0tYs" />
+   
+    <title>@CurrentPage.pageTitle</title>
+    
+    <link href="/css/styles.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/extra.css"  type="text/css" rel="stylesheet"/>
+    
+    <script src="https://code.jquery.com/jquery-2.0.0.min.js" integrity="sha256-1IKHGl6UjLSIT6CXLqmKgavKBXtr0/jJlaGMEkh+dhw="
+  crossorigin="anonymous"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js" type="text/javascript"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+ 
+ 	@Html.Partial("Google-analytics")
+     </head>
+
+   <body class="default-theme default-header banner responsive home-page">
+       
+
+	<div class="ltr">
+	    
+		@{Html.RenderPartial("header");}		
+    <div id="page" class="page-global">
+		<section class="container top clearfix">
+    @RenderBody()
+       
+        @{ Html.RenderPartial("footer");}
+ </div>
+    
+	<script type="text/javascript">
+        $('#searchfield').keydown(function (e) {
+            var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+            if (key == 13) {
+                e.preventDefault();
+                kfaSearch();
+            }
+        });
+
+
+        function getSerachField() {
+            return document.getElementById('searchfield');
+        }
+
+        function searchClear(val) {
+            var d = getSerachField();
+            if (d.value == val)
+                d.value = '';
+        }
+        function searchFill(val) {
+            var d = getSerachField();
+            if (d.value != val)
+                d.value = val;
+        }
+
+        function kfaSearch() {
+            var d = getSerachField();
+            if (d.value != '') {
+                var url = '/search?q=' + encodeURIComponent(d.value);
+            if (document.getElementById('communitySearch').checked) {
+                    url = 'https://community.aafa.org/search?searching=true&queryString=' + encodeURIComponent(d.value);
+              }
+               
+				document.location.href = url;
+            }
+            return false;
+        }
+
+
+    </script>
+
+@Html.Partial("AdRoll Tag")
+                 
+  </body>
+</html>

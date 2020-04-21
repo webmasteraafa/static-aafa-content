@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.StateLanding>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingmaster.cshtml";
+}
+<section class="container main-section clearfix" style="display:none;">
+                <section class="content float-left">
+                </section>
+                <aside class="sidebar float-right">     
+                </aside>
+            </section>
+<section class="container main-section clearfix">
+               
+                <h1>@CurrentPage.Name</h1>
+                <div class="content float-right">
+                    
+  <div id="page" class="page-global">
+      
+     @Umbraco.Field("mainContent")
+     @Umbraco.RenderMacro("RAZORWidgetDropper", new {Node="2068",})
+     @Umbraco.RenderMacro("RAZORWidgetDropper", new {Node="2533",})
+     @Umbraco.Field("secondaryContent")
+   </div>
+</div>
+
+<aside class="sidebar float-left">
+               @Umbraco.RenderMacro("sidebarWidget")
+                </aside>
+            </section>

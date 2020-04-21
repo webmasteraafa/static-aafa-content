@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.TextPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingmaster.cshtml";
+}
+@{
+
+	if (CurrentPage.HasValue("sidebar"))
+                {
+					
+                    var sidebarStatusText = Umbraco.GetPreValueAsString(CurrentPage.sidebar);
+					
+                    
+					if (@sidebarStatusText == "right") 
+                    {
+                        Html.RenderPartial("rightsidebar");
+                    }
+					else if (@sidebarStatusText == "left")
+                    {
+                        Html.RenderPartial("leftsidebar");
+                    }
+                    else if (@sidebarStatusText == "full")
+                    {
+                        Html.RenderPartial("fullcontent");
+					}
+                    
+                }
+    }

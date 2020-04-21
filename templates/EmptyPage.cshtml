@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.EmptyPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = null;
+}
+@if (Model.Content.HasProperty("umbracoInternalRedirect") && Model.Content.HasValue("umbracoInternalRedirect")) {
+        var redirectUrl = Model.Content.GetPropertyValue<string>("umbracoInternalRedirect");
+        Response.RedirectPermanent(redirectUrl);
+}

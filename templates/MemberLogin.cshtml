@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MemberLogin>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "Master.cshtml";
+}
+@Umbraco.Field("mainContent")
+@Umbraco.RenderMacro("MemberLogin")
+@Umbraco.RenderMacro("MemberLogout")
+</div>
+        
+
+    </section>
+</section>

@@ -1,0 +1,16 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.StateHonorRollInfo>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = null;
+}
+if (CurrentPage.HasValue("sidebar"))
+                {
+					
+                    var sidebarStatusText = Umbraco.GetPreValueAsString(CurrentPage.sidebar);
+					
+                    
+					if (@sidebarStatusText == "right") 
+                    {
+                        Html.RenderPartial("rightsidebar");
+                    }
+               }

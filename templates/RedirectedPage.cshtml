@@ -1,0 +1,10 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.RedirectedPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingmaster.cshtml";
+}
+
+@if (Model.Content.HasProperty("umbracoExternalRedirect") && Model.Content.HasValue("umbracoExternalRedirect")) {
+        var redirectUrl = Model.Content.GetPropertyValue<string>("umbracoExternalRedirect");
+        Response.RedirectPermanent(redirectUrl);
+}

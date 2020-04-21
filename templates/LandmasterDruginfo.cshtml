@@ -1,0 +1,157 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	Layout = null;
+
+
+
+}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="shortcut icon" href="/media/2184/aafa.ico" type="image/x-icon" />
+    <meta name="google-site-verification" content="iYpR_XUc8j0Uc4UZ-z0B7SGoqzhOdqFCZVvWs4T0tYs" />
+    <meta name="keywords" content="Asthma, medicines, drug, information"/>
+    <meta name="description" content="Asthma Medicine Drug Information"/>
+    <title>@Umbraco.Field("drugName")</title>
+    <!-- Regular Page CSS -->
+    <link href="/css/styles.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/extra.min.css"  type="text/css" rel="stylesheet"/>
+    
+    
+    <!-- Sub Nav Jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    @Html.Partial("SubNavScript") <!-- Sub Nav-->
+ 	@Html.Partial("Google-analytics")
+     @Html.Partial("facebook pixel")
+
+
+	</head>
+
+   <body class="default-theme default-header banner responsive">
+       @Html.Partial("googletag_script")
+
+	<div class="ltr">
+		@{Html.RenderPartial("header");}
+       
+	    @RenderBody()
+
+        @{ Html.RenderPartial("footer");}
+ </div>
+
+<!-- Mobile JS -->
+	<script type="text/javascript" src="/scripts/modernizr.js" async="async"></script>
+         <script type="text/javascript" src="/scripts/index.js" type="text/javascript" async="async"></script>
+  <script src="/scripts/matchMedia.min.js" type="text/javascript" async="async"></script>
+        <script src="/scripts/nav.dropdown.min.js" type="text/javascript" async="async"></script>
+         <script type="text/javascript">
+        $('#searchfield').keydown(function (e) {
+            var key = e.charCode ? e.charCode : e.keyCode ? e.keyCode : 0;
+            if (key == 13) {
+                e.preventDefault();
+                kfaSearch();
+            }
+        });
+
+
+        function getSerachField() {
+            return document.getElementById('searchfield');
+        }
+
+        function searchClear(val) {
+            var d = getSerachField();
+            if (d.value == val)
+                d.value = '';
+        }
+        function searchFill(val) {
+            var d = getSerachField();
+            if (d.value != val)
+                d.value = val;
+        }
+
+        function kfaSearch() {
+            var d = getSerachField();
+            if (d.value != '') {
+                var url = '/search?q=' + encodeURIComponent(d.value);
+            if (document.getElementById('communitySearch').checked) {
+                    url = 'https://community.aafa.org/search?searching=true&queryString=' + encodeURIComponent(d.value);
+              }
+               
+				document.location.href = url;
+            }
+            return false;
+        }
+
+
+    </script>
+         <script>
+
+             $(document).ready(function() {
+
+                 // only setup the nav if the user has matchMedia support
+                 if (window.matchMedia("only all").matches) {
+
+                     $(document).ready(function () {
+                         var nav = $(".nav-top"),
+                             navInstance;
+
+                         // construct dropdown instance
+                         nav.navDropdown({
+                             /* dropdown plugin options */
+                             toggleSelector: ".nav-toggle"
+                         });
+
+                         // store a reference to the nav instance
+                         navInstance = nav.data("navDropdown");
+
+
+                         // mobile breakpoint and handler
+                         var mobileQuery = "only screen and (max-width: 800px)",
+                             mobileMQ = window.matchMedia(mobileQuery);
+
+                         mobileMQ.listener = function () {
+                             if (window.matchMedia(mobileQuery).matches) {
+                                 navInstance.enable();
+                             }
+                             else {
+                                 navInstance.disable();
+                             }
+                         };
+
+                         // attach listener and trigger
+                         mobileMQ.addListener(mobileMQ.listener);
+
+                         // trigger listener to evaluate viewport size
+                         // since it won't fire on page load
+                         mobileMQ.listener();
+
+                     });
+
+                 }
+             });
+    </script>
+
+
+
+
+ <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55f19de6d3f4b203" async="async"></script>
+@Html.Partial("AdRoll Tag")
+                 
+  </body>
+</html>
+
+
+
+
+
+
+
+

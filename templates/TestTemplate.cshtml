@@ -1,0 +1,47 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = null;
+}
+
+@* the fun starts here *@
+<!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-control" content="max-age=90, must-revalidate" /> 
+    <link rel="shortcut icon" href="/media/2184/aafa.ico" type="image/x-icon" />
+    <meta name="google-site-verification" content="iYpR_XUc8j0Uc4UZ-z0B7SGoqzhOdqFCZVvWs4T0tYs" />
+    <meta name="keyowrds" content="@CurrentPage.metaKeywords"/>
+    <meta name="description" content="@CurrentPage.metaDescription"/>
+    <title>@CurrentPage.pageTitle</title>
+    
+    <link href="/css/styles.min.css" type="text/css" rel="stylesheet"/>
+    <link href="/css/extra.css"  type="text/css" rel="stylesheet"/>
+	</head>
+
+   <body class="default-theme default-header banner responsive">
+       
+
+	<div class="ltr">
+		@{Html.RenderPartial("header3");}
+       
+	    @RenderBody()
+
+        @{ Html.RenderPartial("footer2");}
+ </div>
+
+ <script type="text/javascript" src="/scripts/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="/scripts/modernizr.js"></script>
+
+
+        
+
+
+
+ <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-55f19de6d3f4b203" async="async"></script>
+
+	
+                 
+  </body>
+</html>
+

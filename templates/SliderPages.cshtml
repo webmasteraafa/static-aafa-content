@@ -1,0 +1,6 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.SliderPages>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingmaster.cshtml";
+}
+@CurrentPage.GetGridHtml("content", "bootstrap2")

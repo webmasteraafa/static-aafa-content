@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.AsthmaMedicine>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "LandmasterDruginfo.cshtml";
+    
+}
+<section class="container main-section clearfix" style="display:none;">
+                <section class="content float-left">
+                </section>
+                <aside class="sidebar float-right">     
+                </aside>
+            </section>
+<section class="container main-section clearfix">
+               
+                @Umbraco.RenderMacro("PageHeader")
+                <div class="content float-right">
+                    
+  <div id="page" class="page-global">
+    
+<h3>@Umbraco.Field("drugName")</h3>
+<p style="float:right"><img class="img-resposive" width="300px" src="@Umbraco.Field("picture")"></p>
+<p><strong>Brand</strong>: @Umbraco.Field("brandName")</p>
+<p><strong>Medicine Use</strong>: @Umbraco.Field("medicineUse")</p>
+<p><strong>Type of Medicine</strong>: @Umbraco.Field("typeOfMedicine")</p>
+<p><strong>Form</strong>: @Umbraco.Field("form")</p>
+@if (CurrentPage.HasValue("note")){
+    <p><strong>Notes</strong>: @Umbraco.Field("note")</p>
+}
+<p><strong>Possible Side Effects</strong>: @Umbraco.Field("possibleSideEffects")</p>
+@if (CurrentPage.HasValue("prescribingInfo")){
+<p><strong>Prescribing Info</strong>: <a href="@Umbraco.Field("prescribingInfo")" target="_blank">@Umbraco.Field("prescribingInfo")</a></p>
+}
+ </div>
+</div>
+
+<aside class="sidebar float-left">
+              <div class="widgetzone">
+      <div class="widget navigation">
+	  		
+		<h4 class="widget-header">
+                    Asthma Treatment
+                    <span class="pull-right"></span>
+                    </h4>
+	  	  <div class="widget-content" style="margin-top:15px"> 
+              <ul class="">
+        
+                            <li>
+                    <a href="/asthma/asthma-treatment/asthma-action-plan.aspx">Asthma Action Plan</a>
+                            </li>         
+            <li>
+                    <a href="/asthma/asthma-treatment/asthma-medicine-database.aspx">Asthma Medicine Database</a>
+                            </li>         
+            <li>
+                    <a href="/asthma/asthma-treatment/oral-corticosteroids.aspx">Oral Corticosteroids</a>
+                            </li>         
+
+        
+        </ul>  
+              </div>
+         
+       
+        </div> 
+</div>
+
+                </aside>
+            </section>
+
+
+
+

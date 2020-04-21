@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.HomeGridTest>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingBootstrap.cshtml";
+}
+
+@CurrentPage.GetGridHtml("mainGid");

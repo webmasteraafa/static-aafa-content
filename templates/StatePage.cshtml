@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.StatePage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingmaster.cshtml";
+}
+<section class="container main-section clearfix" style="display:none;">
+                <section class="content float-left">
+                </section>
+                <aside class="sidebar float-right">     
+                </aside>
+            </section>
+<section class="container main-section clearfix">
+               
+               @Umbraco.RenderMacro("PageHeader")
+                <div class="content float-right">
+                    
+  <div id="page" class="page-global">
+    
+@Umbraco.RenderMacro("StateHeader")
+
+@Umbraco.RenderMacro("StateMedical")
+@Umbraco.RenderMacro("StateAwareness")
+@Umbraco.RenderMacro("StateSchool")
+@Umbraco.RenderMacro("StateMisc")
+@Html.Partial("statehonorroll_report")
+</div>
+</div>
+
+<aside class="sidebar float-left">
+               @Umbraco.RenderMacro("sidebarWidget")
+                </aside>
+            </section>

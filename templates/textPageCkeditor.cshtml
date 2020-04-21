@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.TextPageCkeditor>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "landingmaster.cshtml";
+}
+
+@Html.Raw(uCKEditor.InlineEditorHelper.InlineEditorCreate("BodyTextEditor", "mainContent"))
+@{
+
+	if (CurrentPage.HasValue("sidebar"))
+                {
+					
+                    var sidebarStatusText = Umbraco.GetPreValueAsString(CurrentPage.sidebar);
+					
+                    
+					if (@sidebarStatusText == "right") 
+                    {
+                        Html.RenderPartial("rightsidebar_editor");
+                    }
+					else if (@sidebarStatusText == "left")
+                    {
+                        Html.RenderPartial("leftsidebar_editor");
+                    }
+                    else if (@sidebarStatusText == "full")
+                    {
+                        Html.RenderPartial("fullcontent_editor");
+					}
+                    
+                }
+    }

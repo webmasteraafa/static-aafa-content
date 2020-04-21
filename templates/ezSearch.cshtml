@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	Layout = "landingmaster.cshtml";
+}
+<section class="container main-section clearfix" style="display:none;">
+    <section class="content float-left"></section>
+    <aside class="sidebar float-right" style="display:none;">
+        <div class="widgetzone"></div>
+        <div style="display:none">
+        </div>
+    </aside>
+</section>
+<section class="container main-section clearfix">
+    <h1>@CurrentPage.Name</h1>
+    <section class="content wide">
+
+
+
+
+        <div id="page" class="page-global">
+            <div class="ezsearch-results">
+                @Umbraco.RenderMacro("ezSearch", new {rootContentNodeId="2087", rootMediaNodeId="", indexType="CONTENT", searchFields="nodeName, pageTitle, metaTitle, metaDescription, metaKeywords, bodyText, mainContent", previewFields="bodyText", previewLength="1000", pageSize="10", hideFromSearchField="umbracoNaviHide", searchFormLocation="TOP",})  </div>
+        </div>
+        
+
+    </section>
+</section>
+
+
