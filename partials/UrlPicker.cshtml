@@ -1,0 +1,8 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+  var url = Model.Content.As<Models.UrlPicker>("urlPicker");
+}
+
+@if (url != null && url.HasLink) {
+  <a href="@(url.IsInternal ? Umbraco.Url(url.InternalLink) : url.ExternalUrl)" @(url.NewWindow ? "target=\"_blank\"" : "") class="btn">@url.Title</a>
+}

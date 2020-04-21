@@ -1,0 +1,32 @@
+﻿@using umbracoFormsRecaptcha.reCaptchaUmbracoForms
+@using Umbraco.Core.Logging
+@using Umbraco.Forms.Core;
+
+@model Umbraco.Forms.Mvc.Models.FieldViewModel
+
+@{
+    //Updated Jan 2016 to use new ReCaptcha 2.0
+
+    var siteKey = Configuration.GetSetting("RecaptchaPublicKey");
+
+    if (siteKey == "")
+    {
+        LogHelper.Warn<UmbracoFormsEvents>("ERROR: ReCaptcha v.2 is missing the Site Key - Please update the web.config to include 'key=\"RecaptchaSiteKey\"'");
+    }
+    else
+    {
+        //LogHelper.Info<UmbracoFormsEvents>("ReCaptcha Site Key:" + siteKey);
+        if (!string.IsNullOrEmpty(siteKey))
+        {
+            var theme = "clean";
+            var fieldSettingViewModel = Model.AdditionalSettings.FirstOrDefault(x => x.Key == "Theme");
+            if (fieldSettingViewModel.Value != "")
+            {
+                theme = fieldSettingViewModel.Value;
+            }
+
+            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <div class="g-recaptcha" data-sitekey="@siteKey" data-theme="@theme"></div>
+        }
+    }
+}

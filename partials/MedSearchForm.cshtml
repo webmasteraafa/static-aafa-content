@@ -1,0 +1,23 @@
+﻿
+@model AsthmaMed.Models.MedSearchFormViewModel
+
+
+@using (Html.BeginUmbracoForm("Submit", "AsthmaMedForm"))
+{
+    <div>
+        @Html.TextBoxFor(m => m.SearchQuery)
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.MedicineUse,
+                    new SelectList(Enum.GetValues(typeof(MedUse))),
+                    "Select Medicine Use")
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.TypeOfMedicine,
+                    new SelectList(Enum.GetValues(typeof(TypeMed))),
+                    "Select Type of Medicine")
+
+    </div>
+    <input type="submit" name="Submit" value="Submit" />
+}
+

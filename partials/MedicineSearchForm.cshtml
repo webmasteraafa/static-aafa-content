@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@model MedicineSearchFormViewModel
+
+    @using (Html.BeginUmbracoForm<AsthmaMedicine.Controllers.MedicineSearchFormSurfaceController>("FormSubmit"))
+    {
+        
+
+        @Html.TextBoxFor(m => m.Searchquery, new { @class = "searchquery", placeholder = "Searchquery" })
+        @Html.DropDownListFor( m => m.MedicineUseList, new List<SelectListItem>
+            { 
+                            new SelectListItem() { Text = "Long-term control", Value="Long-term control" },
+                            new SelectListItem() { Text = "Quick-relief", Value="Quick-relief" }
+
+            })
+        @Html.DropDownListFor(m => m.TypeOfmedicineList, new List<SelectListItem>
+            {
+                            new SelectListItem() { Text = "Anticholinergics", Value="Anticholinergics" },
+                            new SelectListItem() { Text = "Biologics", Value="Biologics" },
+                            new SelectListItem() { Text = "Combination inhaled medicines", Value="Combination inhaled medicines" },
+                            new SelectListItem() { Text = "Cromolyn Sodium", Value="Cromolyn Sodium" },
+                            new SelectListItem() { Text = "Inhaled corticosteroid", Value="Inhaled corticosteroid" },
+                            new SelectListItem() { Text = "Inhaled long-acting beta agonists", Value="Inhaled long-acting beta agonists" },
+                            new SelectListItem() { Text = "Leukotriene modifiers", Value="Leukotriene modifiers" },
+                            new SelectListItem() { Text = "Oral corticosteroids", Value="Oral corticosteroids" },
+                            new SelectListItem() { Text = "Short-acting beta agonists", Value="Short-acting beta agonists" },
+                            new SelectListItem() { Text = "Theophylline", Value="Theophylline" }
+            })
+     }

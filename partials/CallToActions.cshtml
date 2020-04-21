@@ -1,0 +1,9 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@foreach (var cta in Model.Content.AsList<Models.CallToAction>("callToActions")) {
+  <a href="@(cta.IsInternal ? Umbraco.Url(cta.InternalLink) : cta.ExternalUrl)"@(cta.NewWindow ? "target=\"_blank\"" : "")>
+    @if (cta.Image != null) { <img src="@cta.Image.Src" alt="@cta.Image.Name" /> }
+    <h4>@cta.Heading</h4>
+    <p>@cta.Description</p>
+  </a>
+}

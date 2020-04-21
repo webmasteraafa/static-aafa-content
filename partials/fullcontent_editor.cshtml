@@ -1,0 +1,31 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+
+<section class="container main-section clearfix" style="display:none;">
+    <section class="content float-left"></section>
+    <aside class="sidebar float-right" style="display:none;">
+        <div class="widgetzone"></div>
+        <div style="display:none">
+        </div>
+    </aside>
+</section>
+<section class="container main-section clearfix">
+    @Umbraco.RenderMacro("PageHeader")
+    <section class="content wide">
+
+
+
+
+        <div id="page" class="page-global">
+
+            
+					<div id="BodyTextEditor">
+							@Html.Raw(CurrentPage.mainContent)
+						</div>
+					
+        </div>
+        
+
+    </section>
+</section>
+

@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+<script>
+function gtag_report_conversion() {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-897152591/3Ex6CPDPmZMBEM_s5asD',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>

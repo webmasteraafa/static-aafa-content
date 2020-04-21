@@ -1,0 +1,30 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+	
+
+var currentUri = HttpContext.Current.Request.Url;
+    var port = (currentUri.Port == 80) ? "" : ":" + currentUri.Port;
+    var siteUrl = currentUri.Scheme + Uri.SchemeDelimiter + currentUri.Host + port;
+ var canonicalUrl = Model.Content.Url;
+    // use Umbraco Url alias as the canonical url if it is set
+    if (Model.Content.HasValue("umbracoUrlAlias"))
+    {
+        // umbracourlalias can be a comma delimited string of alterantive urls, the canonical url will be the first
+        var canonicalUrls = Model.Content.GetPropertyValue<string>("umbracoUrlAlias").Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        canonicalUrl = canonicalUrls.FirstOrDefault();
+        if (!String.IsNullOrEmpty(canonicalUrl))
+        {
+            if (!canonicalUrl.StartsWith("/"))
+            {
+                canonicalUrl = "/" + canonicalUrl;
+            }
+//keep consistent with how your site Urls ending, eg add a slash if that is the convention you are implementing
+            if (!canonicalUrl.EndsWith("/"))
+            {
+                canonicalUrl = canonicalUrl + "/";
+            }
+        }
+
+    }
+    canonicalUrl = siteUrl + canonicalUrl;
+}

@@ -1,0 +1,5 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@foreach (var tag in Model.Content.AsList<Models.OpenGraphTag>("openGraphTags")) {
+  <meta property="@tag.Name" content="@tag.Content" />
+}

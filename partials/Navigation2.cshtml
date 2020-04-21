@@ -1,0 +1,32 @@
+﻿
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    @* Get the root of the website *@
+    
+    var root = CurrentPage.AncestorOrSelf(1);
+} 
+<nav class="navbar">
+<div class="nav-toggle">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+     </div>
+
+
+    <div class="nav-top collapse navbar-collapse"id= "myNavbar">
+      <ul>
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li> 
+        <li><a href="#">Page 3</a></li> 
+      </ul>
+      
+    
+  </div>
+</nav>
+
+    
+        
+   

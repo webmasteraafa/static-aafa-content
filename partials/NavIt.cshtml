@@ -1,0 +1,113 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<IPublishedContent>
+
+@{                   
+    var homePage = Model.AncestorOrSelf(StartLevel());
+    var ulCssClass = "class=\"" + MainUlCssClass() + "\"";
+    if (homePage != null && (!(SkipHome()) || homePage.Children.Any()))
+        {
+        @Html.Raw(WrapUlMarkupBefore());
+        <ul @Html.Raw(ulCssClass)>
+            @if (!SkipHome())
+            {
+                var pageName = homePage.HasValue(NavigationNameOverridePropertyAlias) ? homePage.GetPropertyValue<string>(NavigationNameOverridePropertyAlias) : homePage.Name;
+                var selectedItemState = homePage.Id == Model.Id;
+                        
+                <li>
+                    @if (selectedItemState)
+                    {
+                        <span class="active">@pageName</span>
+                    }else{
+                        <a href="@homePage.Url">@pageName</a>
+                    }
+                </li>  
+            }  
+        
+                @Traverse(homePage, false)
+        
+        </ul> 
+        @Html.Raw(WrapUlMarkupAfter()); 
+        } 
+}
+
+@helper Traverse(IPublishedContent parent, bool newList){    
+    var subPages = parent.Children.Where(x => x.IsVisible() && !x.HasProperty(DataNodePropertyAlias) && x.Level <= MaxLevel()).OrderBy(x => x.SortOrder);    
+    if (newList && subPages.Any()){@Html.Raw("<ul>")}
+        foreach (var page in subPages){
+            var pageName = page.HasValue(NavigationNameOverridePropertyAlias) ? page.GetPropertyValue<string>(NavigationNameOverridePropertyAlias) : page.Name;
+            var selectedItemState = page.DescendantsOrSelf().Any(x => x.Id == Model.Id);
+
+            <li>
+                @if (Model.Id == page.Id)
+                {
+                    <span @Html.Raw(selectedItemState ? "class=\"active\"" : String.Empty)>@pageName</span>
+                }
+                else
+                {
+                    <a href="@page.Url"@Html.Raw(selectedItemState ? " class=\"active\"" : String.Empty)>@pageName</a>
+                }
+                @if (selectedItemState || AllExpanded())
+                {
+                    @Traverse(page,true);   
+                }               
+            </li>         
+        }
+    if (newList && subPages.Any()){@Html.Raw("</ul>")}    
+}
+
+@functions{
+
+    private const string NavigationNameOverridePropertyAlias = "navigationNameOverride";
+    private const string DataNodePropertyAlias = "isDataNode";
+
+    private int MaxLevel()
+    {
+      return (int)ViewData["maxLevel"];  
+    }
+    private bool AllExpanded()
+    {
+        return (bool)ViewData["allExpanded"];
+    }
+    private bool SkipHome()
+    {
+        return (bool)ViewData["skipHome"];
+    }
+    private int StartLevel()
+    {
+        if (ViewData["startLevel"]!=null)
+        {
+            return (int) ViewData["startLevel"];
+        }
+        return 1;
+    }
+    private string MainUlCssClass()
+    {
+        if (ViewData["mainUlCssClass"] != null)
+        {
+            return (string)ViewData["mainUlCssClass"];
+        }
+        return String.Empty;
+    }
+    private string WrapUlMarkupBefore()
+    {
+        if (ViewData["wrapUlMarkupBefore"] != null)
+        {
+            return (string)ViewData["wrapUlMarkupBefore"];
+        }
+        return String.Empty;
+    }
+    private string WrapUlMarkupAfter()
+    {
+        if (ViewData["wrapUlMarkupAfter"] != null)
+        {
+            return (string)ViewData["wrapUlMarkupAfter"];
+        }
+        return String.Empty;
+    }           
+
+        /* not implemented yet
+    private bool ShowProtected()
+    {
+        return (bool)ViewData["showProtected"];
+    } 
+    */
+}

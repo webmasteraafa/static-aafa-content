@@ -1,0 +1,67 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    @* Get the root of the website *@
+var root = CurrentPage.AncestorOrSelf(1);
+}
+<nav class="nav-top">
+    <ul><li class="@root.Id"><a href="@root.Url" >@root.Name</a></li>
+    @foreach (var page1 in root.Children.Where("Visible"))
+    {
+        <li class="@page1.Id @(page1.IsAncestorOrSelf(CurrentPage) ? "active " : null)"><a href="@page1.Url">@page1.Name</a>
+        <ul class="nav nav-2">
+                @foreach (var page3 in page1.Children.Where("Visible"))
+                {
+                    
+                    <li class="@page3.Id @(page3.IsAncestorOrSelf(CurrentPage) ? "active " : null)">
+                    <a href="@page3.Url">@page3.Name</a>
+                        
+                                @if (@page3.Children.Where("Visible").Count() > 0)
+                                {
+                                    <ul id="menu" class="nav nav-3">
+                                        @foreach (var page4 in page3.Children.Where("Visible"))
+                                        {
+                                           <li class="@page4.Id @(page4.IsAncestorOrSelf(CurrentPage)? "active " : null)">
+                                           
+                                           
+                                            @if (@page4.Children.Where("Visible").Count() > 0)                               
+                                            {
+                                               <a href="@page4.Url">@page4.Name&nbsp;&nbsp;<i class="fa fa-caret-right"></i></a>
+                                               <ul class = "nav nav-4">
+                                               @foreach(var page5 in page4.Children.Where("Visible"))
+                                               {
+                                                  <li class="@page5.Id @(page5.IsAncestorOrSelf(CurrentPage)? "active " : null)">
+                                                  @if (@page5.Children.Where("Visible").Count() > 0)
+                                                  {
+                                                  <a href="@page5.Url">@page5.Name&nbsp;&nbsp;<i class="fa fa-caret-right"></i></a>
+                                                  <ul class="nav nav-5">
+                                                  @foreach(var page6 in page5.Children.Where("Visible"))
+                                                  {
+                                                  
+                                                  <li class="@page6.Id @(page6.IsAncestorOrSelf(CurrentPage) ? "active " : null)"><a href="@page6.Url">@page6.Name</a>
+                                                  </li>
+                                                  }
+                                                  </ul>
+                                                  
+                                                  
+                                                  
+     
+                                                  } else { <a href="@page5.Url">@page5.Name</a>   }  
+                                                 </li>
+                                                     
+                                               }
+                                               </ul>
+                                            }
+                                            else {
+                                                        <a href="@page4.Url">@page4.Name</a> 
+                                                        }
+                                       </li>
+                                        }
+                                    </ul>
+                                }
+                                
+</li>
+
+                }
+            </ul></li>
+
+            }
