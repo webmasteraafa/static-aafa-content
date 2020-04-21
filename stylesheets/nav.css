@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+ul.nav.nav-3>li:hover :: before  {
+    border-bottom: none;
+	visibility: visible;
+	opacity:1;
+	display:block;
+	z-index:10;
+}
+
+nav.nav-top ul.nav-3>li.active>a
+{
+   color: #23aedc;
+   background-color: #FFF;
+}
+
+
+nav.nav-top ul.nav-4>li>a {
+    background-color: transparent;
+    color: #FFF;
+    white-space: normal;
+    height: auto;
+}
+ul.nav.nav-4 {
+    position: relative;
+    top: 100%;
+    left: 70px;
+    background-color: #1990ba;
+    z-index: 3;
+    text-align: left;
+    display: none;
+    min-width: 100%;
+    padding: 4px 0;
+}
+ul.nav.nav-4 li {
+    display: block;
+}
+ul.nav.nav-4 li a {
+    font-size: 14px;
+    padding: 4px 16px;
+    margin: 0;
+}
+ul.nav.nav-4 li a:after {
+    display: none!important;
+}
+ul.nav.nav-4 li:hover a {
+    color: #8ae8ff;
+    background-color: transparent;
+}
