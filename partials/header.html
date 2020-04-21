@@ -1,0 +1,56 @@
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+
+   var root = CurrentPage.AncestorOrSelf(1);
+}
+<header class="header">
+    <div class="line-header">
+        <div class="container">
+            <nav class="nav-header navbar">
+                <ul class="nav">
+                     <li><a href="/donate-online.aspx" class="donation-top">Donate</a></li>
+					<li><a href="/health-care-professionals/">Health Professionals</a></li>
+                    <li><a href="/aafa-partners/">Partners</a></li>
+                    <li><a href="/media/">Media</a></li>
+                    <li style="float:right; padding-right:15px"><a href="/subscribe/" onclick="trackOutboundLink('https://www.aafa.org/subscribe/'); return false;" class="contact">Stay in Touch</a></li>      </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="banner-header">
+        <div class="container title-blog">
+            <div class="float-right btn-green"><a href="https://www.aafa.org/donate-online.aspx">Donate</a></div>
+            <div class="float-right btn-blue"><a href="https://community.aafa.org">Get Support</a></div>
+            <h1>
+                <a href="/">AAFA</a>
+            </h1>
+            <div class="search float-right open-search">
+                <div class="btn-toggle-search" style="display:none;"></div>
+                <span class="slabel">Search: </span>
+                <label><input type="radio" name="searchType" id="resourceSearch" checked="checked"/> Resources</label>
+                <label><input type="radio" name="searchType" id="communitySearch"/> Community</label><br />                          
+                <input type="text"  id="searchfield" 
+                    value="Enter search term" class="tooltip-search" title="Press Enter to search" onfocus="this.value=''">
+                    
+</div>
+        </div>
+            <div class="container">
+           <div class="nav-toggle"></div>
+           
+                   @{Html.RenderPartial("Navigation");}
+                   
+                    <li class="show-mob"><a href="/health-care-professionals.aspx">Health Professionals</a></li>
+                    <li class="show-mob"><a href="/aafa-partners.aspx">Partners</a></li>
+                    <li class="show-mob"><a href="/media.aspx">Media</a></li>
+                     <li class="show-mob"><a href="https://www.aafa.org/donate-online.aspx">Donate</a></li>
+
+                  
+                   
+                   </ul>
+               
+           </nav>
+            
+          
+        </div>
+    </div>
+    
+</header>
