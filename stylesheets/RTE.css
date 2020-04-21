@@ -1,0 +1,23 @@
+
+/**umb_name:Content H2*/
+h2{color: #0073B5;
+font-size: 21px;
+font-family: 'cabinsemibold';
+font-weight: 400;
+margin-top: 0;}
+
+/**umb_name:Content H3*/
+h3{font-size: 17px;
+font-family: 'cabinbold';
+font-weight: 400;
+color: #008b99;}
+
+/**umb_name:content P*/
+p{margin: 0 0 15px;}
+
+/**umb_name:Content small*/
+small{font-size: 80%}
+
+/**umb_name:.centerimg*/
+.centerimg{display:block;
+text-align:center}
