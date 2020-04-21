@@ -1,0 +1,71 @@
+/*Tables*/
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+ 
+
+
+	/* Force table to not be like tables anymore */
+	.papmu table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.papmu thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	.papmu tr { border: 1px solid #ccc; }
+	
+	.papmu td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	.papmu td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		
+	} 
+	
+	/*
+	Label the data
+	*/
+    .spas:nth-of-type(1):before { content: "Organization"; }
+	.spas:nth-of-type(2):before { content: "Toll-Free Number"; }
+	.spas:nth-of-type(3):before { content: "Funds Available for Asthma?";}
+	.spas:nth-of-type(4):before { content: "Medicare/Medicaid Patients Eligible?"; }
+	.spas:nth-of-type(5):before { content: "More Information"; }
+
+	.ncpa:nth-of-type(1):before { content: "Organization"; }
+	.ncpa:nth-of-type(2):before { content: "Toll-Free Number"; }
+	.ncpa:nth-of-type(3):before { content: "Funds Available for Asthma?";}
+	.ncpa:nth-of-type(4):before { content: "Medicare/Medicaid Patients Eligible?"; }
+	.ncpa:nth-of-type(5):before { content: "More Information"; }
+
+    .pap:nth-of-type(1):before { content: "Company/Medicine"; }
+	.pap:nth-of-type(2):before { content: "Toll-Free Number"; }
+	.pap:nth-of-type(3):before { content: "Medicare/Medicaid Patients Eligible?"; }
+	.pap:nth-of-type(4):before { content: "More Information"; }
+
+
+    .psdp:nth-of-type(1):before { content: "Pharmacy Program Name"; }
+	.psdp:nth-of-type(2):before { content: "Toll-Free Number"; }
+	.psdp:nth-of-type(3):before { content: "Membership Cost?"; }
+	.psdp:nth-of-type(4):before { content: "Medicare/Medicaid Patients Eligible?"; }
+	.psdp:nth-of-type(5):before { content: "More Information"; }javascript:__doPostBack('ctl00$body$save','')
+
+	
