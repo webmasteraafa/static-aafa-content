@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    var src = Umbraco.Media(Model.MacroParameters["mediaId"]).Url;
+    var zoom = Model.MacroParameters["initialZoom"];
+    var page = Model.MacroParameters["initialPage"] == null || Model.MacroParameters["initialPage"].ToString() == "null" ? "" : Model.MacroParameters["initialPage"];
+    var width = Model.MacroParameters["frameWidth"];
+    var height = Model.MacroParameters["frameHeight"];
+    var cssClass = Model.MacroParameters["frameClass"];
+}
+<div class="videoYouTubeWrapper" style="height:490px">
+<p style="text-align: center;">
+<iframe style="overflow:visible; text-align:center" scrolling="no" allowFullScreen width="@width" height="@height" class="@cssClass" src="/pdfjs8fall19/viewer.html?file=@src#page=@page&zoom=@zoom"></iframe>
+</p>
+</div>

@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+		//get all children of type 'slide_item'
+    var slides = @CurrentPage.Children.Where("DocumentTypeAlias == \"slide_item\"");
+    }
+
+
+<section class="content float-left">
+    <ul class="bxslider">
+        
+        @foreach (var slide in @slides)
+        {
+          if (@slide.image != null)
+          {
+          var image = Umbraco.Media(@slide.image);
+          
+          <li><a href="@slide.pageLink" target="@slide.target"><img src="@slide.mediaLink" alt="@slide.name" ></a>
+                          </li>
+          
+          }
+         
+        }
+    </ul>
+  </section>

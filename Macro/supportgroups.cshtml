@@ -1,0 +1,109 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@using esg.PetaPoco.Models
+@using esg.PetaPoco.Repository
+@{
+    Layout = null;
+    var currentstate = "none";
+    var counter_v = 0;
+    var counter_i = 0;
+}
+    <h3>United States</h3>
+    @foreach (var SupportGroups in SupportGroup.GetAll())
+    {
+        if (@SupportGroups.typeg == "normal")
+        {
+           if (@currentstate != @SupportGroups.statename)
+           {
+            <a id="@SupportGroups.abbr" name="@SupportGroups.abbr"></a>
+				
+			<h3>@SupportGroups.statename</h3>
+            currentstate = @SupportGroups.statename;
+           }
+            if (@SupportGroups.supportgroup == "Yes")
+            {
+             <p><strong>@SupportGroups.groupname</strong><br>
+            <strong>Area Served:</strong> @SupportGroups.areaserved<br/>
+            <strong>Audience:</strong> @SupportGroups.audience<br/>
+            <strong>Focus:</strong> @SupportGroups.focus<br/>
+            <strong>Meeting Locations:</strong> @SupportGroups.location<br />
+            <strong>Meetings:</strong> @SupportGroups.meetings<br />
+            <strong>Coordinator:</strong> @SupportGroups.coordinator<br />
+            @if (@SupportGroups.medical_advisor != "N/A")
+            {
+            <strong>Medical Advisor:</strong> @SupportGroups.medical_advisor<br />
+            }
+            @if (@SupportGroups.phone != "N/A")
+            {
+            <strong>Phone Number:</strong> @SupportGroups.phone<br />
+            }
+            @if (@SupportGroups.fax != "N/A")
+            {
+            <strong>Fax Number:</strong> @SupportGroups.fax<br />
+            }
+            <strong>E-mail:</strong> <a href="mailto:@SupportGroups.email">@SupportGroups.email</a><br />
+            @if ((@SupportGroups.website != null) || (@SupportGroups.websiteURL != null))
+            {
+           <strong>Website:</strong> <a href="@SupportGroups.websiteURL" target="_blank">@SupportGroups.website</a>
+            }
+    </p>
+            }
+            else 
+            {
+           <p>We&#39;re sorry, there are not any Educational 
+               Support Groups in your area at this time. If you would 
+               like to start an AAFA Educational Support Group in your 
+               community, please contact AAFA at 800-7-ASTHMA.</p>
+            }
+         }
+      
+         if (@SupportGroups.typeg == "Virtual")
+         {
+             
+             if (counter_v < 1 )
+             {
+             <p><a href="#Top">Top of Page</a></p>
+             <h3>Virtual Groups</h3>
+             } 
+             counter_v = counter_v +1;
+              <a id="@SupportGroups.abbr" name="@SupportGroups.abbr"></a>
+             <h3>@SupportGroups.groupname</h3>
+             <p><strong>@SupportGroups.groupname</strong><br>
+            <strong>Area Served:</strong> @SupportGroups.areaserved<br/>
+            <strong>Audience:</strong> @SupportGroups.audience<br>
+            <strong>Focus:</strong> @SupportGroups.focus<br/>
+            <strong>Meeting Locations:</strong> @SupportGroups.location<br />
+            <strong>Meetings:</strong> @SupportGroups.meetings<br />
+            <strong>Coordinator:</strong> @SupportGroups.coordinator<br />
+            <strong>Medical Advisor:</strong> @SupportGroups.medical_advisor<br />
+            <strong>Phone Number:</strong> @SupportGroups.phone<br />
+            <strong>Fax Number:</strong> @SupportGroups.fax<br />
+            <strong>E-mail:</strong> <a href="mailto:@SupportGroups.email">@SupportGroups.email</a><br />
+           <strong>Website:</strong> <a href="@SupportGroups.websiteURL" target="_blank">@SupportGroups.website</a></p>
+         }
+         if (@SupportGroups.typeg == "International")
+         {
+             if (counter_i < 1 )
+             {
+            <p><a href="#Top">Top of Page</a></p>
+            <h3>International Groups</h3>
+             } 
+             counter_i = counter_i +1;
+              <a id="@SupportGroups.abbr" name="@SupportGroups.abbr"></a>
+             <h3>@SupportGroups.statename</h3>
+             <p><strong>@SupportGroups.groupname</strong><br>
+            <strong>Area Served:</strong> @SupportGroups.areaserved<br/>
+            <strong>Audience:</strong> @SupportGroups.audience<br/>
+            <strong>Focus:</strong> @SupportGroups.focus<br/>
+            <strong>Meeting Locations:</strong> @SupportGroups.location<br />
+            <strong>Meetings:</strong> @SupportGroups.meetings<br />
+            <strong>Coordinator:</strong> @SupportGroups.coordinator<br />
+            <strong>Medical Advisor:</strong> @SupportGroups.medical_advisor<br />
+            <strong>Phone Number:</strong> @SupportGroups.phone<br />
+            <strong>Fax Number:</strong> @SupportGroups.fax<br />
+            <strong>E-mail:</strong> <a href="mailto:@SupportGroups.email">@SupportGroups.email</a><br />
+           <strong>Website:</strong> <a href="@SupportGroups.websiteURL" target="_blank">@SupportGroups.website</a>
+            </p>
+         }
+        }
+ <p><a href="#Top">Top of Page</a></p>

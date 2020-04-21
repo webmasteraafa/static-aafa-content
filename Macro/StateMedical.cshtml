@@ -1,0 +1,287 @@
+﻿
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using statehonorroll.PetaPoco.Models
+@using statehonorroll.PetaPoco.Repository
+@{
+    Layout = null;
+    var statename = @CurrentPage.Name;
+
+}
+
+@foreach (var States in State.GetStateInfo(statename))
+{
+    <div class="main_heading_box">
+            <h3 style="color:#fff; margin-top:7px; margin-left:5px;">Medication and Treatment Policies:</h3>
+        </div>
+        <div class="sub_heading_box">
+        
+                <p>
+                    Meets
+                    @if (@States.medical_cp < 10)
+                    {
+                        @States.medical_cpc;
+                    }
+                    else
+                    {
+                        @States.medical_cp;
+                    }
+                    of 12 core policy standards in this category:
+                  
+                </p>
+                
+        
+      
+    </div><div class="shr">
+    <table class="data_tables">
+        <tbody>
+            <tr>
+                @if (@States.Q1 == "YES")
+                {
+                    <td class="grey_box">1.&nbsp;State requires physician’s written instructions to be on file to dispense prescription medication to students.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                   
+                }
+                else
+                {
+                    <td class="no_color_box">1.&nbsp;State requires physician’s written instructions to be on file to dispense prescription medication to students.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                   
+                }
+                </tr>
+            <tr>
+                @if (@States.Q2 == "YES")
+                {
+                    <td class="grey_box">2.&nbsp;State policy ensures students&rsquo; right to self-carry and self-administer prescribed asthma medication.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                   
+                }
+                else
+                {
+                    <td class="no_color_box">2.&nbsp;State policy ensures students&rsquo; right to self-carry and self-administer prescribed asthma medication.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                   
+                }
+            </tr>
+            <tr>
+                @if (@States.Q3 == "YES")
+                {
+                    <td class="grey_box">3.&nbsp;State policy ensures students&rsquo; right to self-carry and self-administer prescribed anaphylaxis medication.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                   
+                }
+                else
+                {
+                    <td class="no_color_box">3.&nbsp;State policy ensures students&rsquo; right to self-carry and self-administer prescribed anaphylaxis medication.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                    
+                }
+                
+            </tr>
+            <tr>
+                @if (@States.Q4 == "YES")
+                {
+                    <td class="grey_box">4.&nbsp;State policies or procedures shield school personnel from liability for unintended injuries.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                    
+
+                }
+                else
+                {
+                    <td class="no_color_box">4.&nbsp;State policies or procedures shield school personnel from liability for unintended injuries.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+
+                }
+
+
+                </tr>
+            <tr>
+                @if (@States.Q5 == "YES")
+                {
+                    <td class="grey_box">5.&nbsp;State requires local school districts to create asthma and anaphylaxis medication policy and provides resources, guidelines and parameters.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                     
+                }
+                else
+                {
+                    <td class="no_color_box">5.&nbsp;State requires local school districts to create asthma and anaphylaxis medication policy and provides resources, guidelines and parameters.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+
+                }
+            </tr>
+            <tr>
+                @if (@States.Q6 == "YES")
+                {
+                    <td class="grey_box">6.&nbsp;State policy mandates schools to identify and maintain records for students with chronic conditions including asthma and anaphylaxis.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                    
+                }
+                else
+                {
+                    <td class="no_color_box">6.&nbsp;State policy mandates schools to identify and maintain records for students with chronic conditions including asthma and anaphylaxis.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+            </tr>
+            <tr>
+               @if (@States.Q7 == "YES")
+                {
+                    <td class="grey_box">7.&nbsp;State requires a procedure updating health records periodically.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                    
+                }
+                else
+                {
+                    <td class="no_color_box">7.&nbsp;State requires a procedure updating health records periodically.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+
+                
+            </tr>
+            <tr>
+                @if (@States.Q8 == "YES")
+                {
+                    <td class="grey_box">8.&nbsp;State requires that schools maintain asthma/allergy incident reports for reactions, attacks, and medications administered.</td>
+                    <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                   
+                }
+                else
+                {
+                    <td class="no_color_box">8.&nbsp;State requires that schools maintain asthma/allergy incident reports for reactions, attacks, and medications administered.</td>
+                    <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+            </tr>
+            <tr>
+                @if (@States.Q9 == "YES")
+                {
+                <td class="grey_box">9.&nbsp;State requires a student health history form that includes asthma/allergy information to be maintained for each student.</td>
+                <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+               
+                }
+                else
+                {
+                <td class="no_color_box">9.&nbsp;State requires a student health history form that includes asthma/allergy information to be maintained for each student.</td>
+                <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+            </tr>
+            <tr>
+                @if (@States.Q10 == "YES")
+                {
+                <td class="grey_box">10.&nbsp;State requires schools to have emergency protocols for asthma.</td>
+                <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                
+                }
+                else
+                {
+                <td class="no_color_box">10.&nbsp;State requires schools to have emergency protocols for asthma.</td>
+                <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+            </tr>
+            <tr>
+                @if (@States.Q11 == "YES")
+                {
+                <td class="grey_box">11.&nbsp;State requires schools to have emergency protocols for anaphylaxis.</td>
+                <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+               
+                }
+                else
+                {
+                <td class="no_color_box">11.&nbsp;State requires schools to have emergency protocols for anaphylaxis.</td>
+                <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+            </tr>
+            <tr>
+                @if (@States.Q12 == "YES")
+                {
+                <td class="grey_box">12.&nbsp;Nurse-to-student ratio is 1:750 or better.</td>
+                <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+               
+                }
+                else
+                {
+                <td class="no_color_box">12.&nbsp;Nurse-to-student ratio is 1:750 or better.</td>
+                <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                }
+            </tr>
+            
+        </tbody>
+    </table></div>
+   <div class="sub_heading_box">
+<p style="margin-top:5px; margin-left:5px;">Meets @States.medical_cic of six extra credit indicators in this category:</p>
+</div>
+<div class="shr"><table class="data_tables">
+                    <tbody>
+                        <tr>
+                             @if (@States.QA == "YES")
+                             {
+                               <td class="grey_box">A.&nbsp;State requires anaphylaxis epinephrine stocking and authority to administer in schools</td>
+                              <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                             }
+                             else
+                             {
+                             <td class="no_color_box">A.&nbsp;State requires anaphylaxis epinephrine stocking and authority to administer in schools.</td>
+                             <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                             }
+                        </tr>
+                        <tr>
+                            @if (@States.QB == "YES")
+                             {
+                               <td class="grey_box">B.&nbsp;State requires or allows albuterol asthma medication stocking and authority to administer in schools.</td>
+                              <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                             }
+                             else
+                             {
+                            <td class="no_color_box">B.&nbsp;State requires or allows albuterol asthma medication stocking and authority to administer in schools.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                             }
+                        </tr>
+                        <tr>
+                             @if (@States.QC == "YES")
+                             {
+                               <td class="grey_box">C.&nbsp;State has or is preparing an explicit asthma program with policies, procedures and resources for schools to manage students with asthma.</td>
+                              <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                             }
+                             else
+                             {
+                            <td class="no_color_box">C.&nbsp;State has or is preparing an explicit asthma program with policies, procedures and resources for schools to manage students with asthma.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                        </tr>
+                        <tr>
+                            @if (@States.QD == "YES")
+                             {
+                            <td class="grey_box">D.&nbsp;State has or is preparing an explicit anaphylaxis program with policies, procedures and resources for schools to manage students with allergies.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">D.&nbsp;State has or is preparing an explicit anaphylaxis program with policies, procedures and resources for schools to manage students with allergies.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                         </tr>
+                        <tr>
+                            @if (@States.QE == "YES")
+                             {
+                            <td class="grey_box">E.&nbsp;State has adopted policy that each school will have one full-time nurse.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">E.&nbsp;State has adopted policy that each school will have one full-time nurse.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                        </tr>
+                        <tr>
+                            @if (@States.QF == "YES")
+                             {
+                            <td class="grey_box">F.&nbsp;State has adopted policy that school districts provide case management for students with chronic health conditions such as asthma.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">F.&nbsp;State has adopted policy that school districts provide case management for students with chronic health conditions such as asthma.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                            
+                        </tr>
+                    </tbody>
+                </table></div>
+    }           

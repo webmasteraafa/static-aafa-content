@@ -1,0 +1,496 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using ClientDependency.Core.Mvc
+@using AsthmaMedicines.PetaPoco.Models
+@using AsthmaMedicines.PetaPoco.Repository
+@{
+    var searchQuery = Request.QueryString["q"];
+    var medicineQuery = Request.QueryString["med"];
+    var typeMedQuery = Request.QueryString["typemed"];
+    var count = 0;
+}
+<div class="feature">
+        <div class="title-bar search">
+            Asthma Medicine Search
+        </div>
+        <form action="@Model.Content.Url" method="GET" id="search">
+   <div class="inner table">
+   <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td colspan="2"><p><b>Brand or Drug Name:</b></p></td></tr>
+         
+                            <tr>
+                                <td colspan="2"> <input type="text" class="form-control" placeholder="Search..." name="q" value="@searchQuery" />
+             </td>
+                            </tr>
+                        </table>
+                    </td>
+                   
+                </tr>
+   <tr>
+                    <td>
+                        <table>
+                            <tr>
+                                <td style="width:70%"><p><b>Filter by:</b></p></td></tr>
+                                <tr>
+                            <td style="text-align:left";><p><b>Medicine Use</b></p><br />
+                             <select name="med" class="form-control" placeholder="Medecine Use">
+                        <option value="">Select</option>
+                        <option value="Long-term control">Long-term control</option>
+                        <option value="Quick-relief">Quick-relief</option>
+                    </select> 
+   </td></tr>
+                            <tr>
+                                <td style="text-align:left">
+                                    <br />
+                                    <p><b>Type of Medicine</b></p><br />
+                        <select name="typemed" class="form-control" placeholder ="Type Of Medicine">
+                        <option value="">Select</option>
+                        <option value="Anticholinergics">Anticholinergics</option>
+                        <option value="Biologics">Biologics</option>
+                        <option value="Combination inhaled medicines">Combination inhaled medicines</option>
+                        <option value="Cromolyn Sodium">Cromolyn Sodium</option>
+                        <option value="Inhaled corticosteroid">Inhaled corticosteroid</option>
+                            <option value="Inhaled long-acting beta agonists">Inhaled long-acting beta agonists</option>
+                            <option value="Leukotriene modifiers">Leukotriene modifiers</option>
+                            <option value="Oral corticosteroids">Oral corticosteroids</option>
+                            <option value="Short-acting beta agonists">Short-acting beta agonists</option>
+                            <option value="Theophylline">Theophylline</option>
+                            </select>
+                             </td>
+                            </tr>
+                        </table>
+                      
+                    </td>
+                  </tr>
+   </table>
+   <div class="clearfix" style="padding:0 10px 0;">
+                <div style="float:right">
+                   <button class="btn btn-primary">Search <i class="fa fa-search"></i></button>
+                    <br style="clear:both" />
+                    <br />
+
+               </div>
+            </div>
+   </div> <!-- Inner Table -->
+</div> <!-- Feature Box -->
+<div class="search-results" id="resultsPanel"/>
+
+@{
+    if ((string.IsNullOrEmpty(searchQuery)) && (string.IsNullOrEmpty(medicineQuery)) && (!string.IsNullOrEmpty(typeMedQuery)))
+    {
+         <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+            @foreach (var Medicines in Medicine.GetTypeMed(typeMedQuery))
+                {
+              
+               <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+
+                    count = count + 1;
+                     
+                    }
+               
+        
+                @if (count < 1)
+                {
+                    
+                   <div class="itemSection">
+                        <div class="itemDrug">
+                            
+                   <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div>
+                   <div style="clear:both"></div>
+                }
+        </div>
+    
+    }
+    else if  ((!string.IsNullOrEmpty(searchQuery)) && (string.IsNullOrEmpty(medicineQuery)) && (string.IsNullOrEmpty(typeMedQuery)))
+    {
+                 <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+                @foreach (var Medicines in Medicine.GetDrugname(searchQuery))
+                {
+                
+                 <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+
+                    count = count + 1;
+
+                }
+                @if (count < 1)
+                {
+                    
+                    <div class="itemSection">
+                        <div class="itemDrug">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div>
+                   <div style="clear:both"></div>
+                }
+            </div>
+    
+    
+    }
+    else if ((string.IsNullOrEmpty(searchQuery)) && (!string.IsNullOrEmpty(medicineQuery)) && (string.IsNullOrEmpty(typeMedQuery)))
+    {
+            <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+                @foreach (var Medicines in Medicine.GetMedicineUse(medicineQuery))
+                {
+              <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+                    count = count + 1;
+
+                }
+               @if (count < 1)
+                {
+                    
+                    <div class="itemSection">
+                        <div class="itemDrug">
+                          
+                   <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div>
+                   <div style="clear:both"></div>
+                }
+            </div>
+    }
+    else if ((string.IsNullOrEmpty(searchQuery)) && (!string.IsNullOrEmpty(medicineQuery)) && (!string.IsNullOrEmpty(typeMedQuery)))
+    {
+                <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+         
+                @foreach (var Medicines in Medicine.GetQuery2(medicineQuery, typeMedQuery))
+                {
+                    
+                 <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+
+                    count = count + 1;
+
+                }
+                @if (count < 1)
+                {
+                    <div class="itemSection">
+                        <div class="itemDrug">
+                            
+                   <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div>
+                   <div style="clear:both"></div>
+                }
+            </div>
+    }
+      else if ((!string.IsNullOrEmpty(searchQuery)) && (!string.IsNullOrEmpty(medicineQuery)) && (string.IsNullOrEmpty(typeMedQuery)))
+    {
+               <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+           
+                @foreach (var Medicines in Medicine.GetQuery3(medicineQuery, searchQuery))
+                {
+                    
+                   <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+                    count = count + 1;
+
+                }
+               @if (count < 1)
+                {
+                    
+                    <div class="itemSection">
+                        <div class="itemDrug">
+                           
+                   <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div>   <div style="clear:both"></div>
+                }
+            </div>
+    }
+    else if ((!string.IsNullOrEmpty(searchQuery)) && (string.IsNullOrEmpty(medicineQuery)) && (!string.IsNullOrEmpty(typeMedQuery)))
+    {
+         <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+
+                @foreach (var Medicines in Medicine.GetQuery4(typeMedQuery, searchQuery))
+                {
+                     <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+                    count = count + 1;
+
+                }
+                @if (count < 1)
+                {
+                    
+                    <div class="itemSection">
+                        <div class="itemDrug">
+                           
+                   <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div>    <div style="clear:both"></div>
+                }
+       </div>
+    }
+    else if ((!string.IsNullOrEmpty(searchQuery)) && (!string.IsNullOrEmpty(medicineQuery)) && (!string.IsNullOrEmpty(typeMedQuery)))
+    {
+                <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+                @foreach (var Medicines in Medicine.GetQuery(medicineQuery, searchQuery, typeMedQuery))
+                {
+                
+                <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+                    count = count + 1;
+
+                }
+                @if (count < 1)
+                {
+                    
+                    <div class="itemSection">
+                        <div class="itemDrug">
+                            
+                   <p style="color:red"><strong> No results for your search</strong></p>
+                   
+                   </div><div class="itemSideEffets">
+                           <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                        <div class="itemImage">
+                            <p style="color:red"><strong> No results for your search</strong></p>
+                        </div>
+                    </div><div style="clear:both"></div>
+                }
+            </div>
+    }
+  else
+    {
+            <div class="res">
+             <div class="headerSection">
+           <div class="headerDrug2">
+              <h3>Drug Information</h3>
+            </div>
+        
+             <div class="headerImage2">
+                 <h3></h3>
+              </div>
+          </div>
+
+                @foreach (var Medicines in Medicine.GetAll())
+                {
+                    <div class="itemSection">
+                        <div class="itemDrug2">
+                            <p>
+                               <strong>Drug Name:</strong> <a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Medicines.DrugName</a><br>
+                                <strong>Brand:</strong> @Medicines.Brand<br>
+                                <strong>Medicine Use:</strong> @Medicines.MedicineUse<br>
+                                <strong>Type Of Medicine:</strong> @Medicines.TypeMedicine
+                              </p>
+                        </div>
+                        <div class="itemImage2"><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">@Html.Raw(@Medicines.Picture)</a>
+                        <br> ><a href="/asthma/asthma-treatment/asthma-medicine-database/asthma-med.aspx?id=@Medicines.DrugId&@Medicines.DrugName">Prescribing Info and Side Effects</a></div>
+                        
+                    </div>
+                    <div style="clear:both"></div>
+                    <hr />
+
+                }
+            </div>
+            }
+
+    }
+
+
+
+
+</div>
+ 
+               
+
+</form>
+ <p><a href="/medical-scientific-council/">Medical Review</a> August 2018.</p>
+                <a href="#top">Return to top of search</a>

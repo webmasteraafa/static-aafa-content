@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@if (!string.IsNullOrEmpty(Request.QueryString["query"]))    
+{
+    <ul>
+        @foreach (var result in Umbraco.TypedSearch(Request.QueryString["query"]))
+        {
+            <li>
+                <a href="@result.Url">@result.Name</a>
+            </li>
+        }
+    </ul>
+}

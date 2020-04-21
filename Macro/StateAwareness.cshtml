@@ -1,0 +1,102 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using statehonorroll.PetaPoco.Models
+@using statehonorroll.PetaPoco.Repository
+@{
+    Layout = null;
+    var statename = @CurrentPage.Name;
+
+}
+<div class="main_heading_box">
+<h3 style="color:#fff; margin-top:7px; margin-left:5px;">Awareness Policies:</h3>
+</div>
+@foreach (var States in State.GetStateInfo(statename))
+{
+
+
+<div class="sub_heading_box">
+    @if (@States.awareness_cp == 2)
+    {
+    <p style="margin-top:5px; margin-left:5px;">   
+     Meets both core policy standards in this category:</p>
+    }
+    else
+    {
+      <p style="margin-top:5px; margin-left:5px;">
+      Meets @States.awareness_cpc of 2 core policy standards in this category: </p> 
+    }
+    
+</div>
+<div class="shr">
+<table class="data_tables">
+	<tbody>
+		<tr>
+			@if (@States.Q13 == "YES")
+                             {
+                            <td class="grey_box">13.&nbsp;State recognizes problem of asthma in schools and has begun to address it.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">13.&nbsp;State recognizes problem of asthma in schools and has begun to address it.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                         </tr>
+                        <tr>
+                            @if (@States.Q14 == "YES")
+                             {
+                            <td class="grey_box">14.&nbsp;State recognizes problem of allergy in schools and has begun to address it.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">14.&nbsp;State recognizes problem of allergy in schools and has begun to address it.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                            
+		</tr>
+	</tbody>
+</table></div>
+<div class="sub_heading_box">
+     @if (@States.awareness_ci == 2)
+      {
+        <p style="margin-top:5px; margin-left:5px;">
+         Meets both of 2 extra credit indicators in this category: </p>
+      }     
+      else
+      {
+      <p style="margin-top:5px; margin-left:5px;">
+      Meets @States.awareness_cic of 2 extra credit indicators in this category: </p>
+      }
+</div>
+<div class="shr">
+<table class="data_tables">
+	<tbody>
+	<tr>
+                            @if (@States.QG == "YES")
+                             {
+                            <td class="grey_box">G.&nbsp;State sponsors or provides funding for staff training in asthma awareness covering school asthma program/policy and procedures.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">G.&nbsp;State sponsors or provides funding for staff training in asthma awareness covering school asthma program/policy and procedures.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                            </tr>
+                             <tr>
+                            @if (@States.QH == "YES")
+                             {
+                            <td class="grey_box">H.&nbsp;State sponsors or provides funding for staff training in food allergies.</td>
+                            <td class="grey_check"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box">H.&nbsp;State sponsors or provides funding for staff training in food allergies.</td>
+                            <td class="no_check"><img alt="" src="/media/1977/x-24x24.png" /></td>
+                            }
+                            </tr>
+	</tbody>
+</table>
+</div>
+}
+

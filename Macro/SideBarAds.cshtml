@@ -1,0 +1,83 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+<style type="text/css">
+#rotating-item-wrapper {
+    position: relative;
+    width: 300px;
+    height: 180px;
+}
+.rotating-item {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
+
+@{
+    //get all children of type 'slide_item'
+    var ads = @CurrentPage.Children.Where("DocumentTypeAlias == \"sideBarAds\"");
+    
+}
+<div class="widget comboweb noBorder">
+ <div id="rotating-item-wrapper" style="margin: 0 10px;">
+     <div class="widget-content">
+     @foreach (var ad in @ads)
+        {
+          if (@ad.adImage != null)
+          {
+          var image = Umbraco.Media(@ad.adImage);
+          
+          <a href="@ad.adLink"><img id ="@ad.clickClass" class="rotating-item" src="@ad.adMediaLink" alt="ad.name"></a>
+                          
+          
+          }
+         
+        }
+ </div>
+ </div>
+ </div>
+<script>       
+        
+ $(window).load(function() { //start after HTML, images have loaded
+ 
+    var InfiniteRotator =
+    {
+        init: function()
+        {
+            //initial fade-in time (in milliseconds)
+            var initialFadeIn = 1000;
+ 
+            //interval between items (in milliseconds)
+            var itemInterval = 5000;
+ 
+            //cross-fade time (in milliseconds)
+            var fadeTime = 2500;
+ 
+            //count number of items
+            var numberOfItems = $('.rotating-item').length;
+ 
+            //set current item
+            var currentItem = 0;
+ 
+            //show first item
+            $('.rotating-item').eq(currentItem).fadeIn(initialFadeIn);
+ 
+            //loop through the items
+            var infiniteLoop = setInterval(function(){
+                $('.rotating-item').eq(currentItem).fadeOut(fadeTime);
+ 
+                if(currentItem == numberOfItems -1){
+                    currentItem = 0;
+                }else{
+                    currentItem++;
+                }
+                $('.rotating-item').eq(currentItem).fadeIn(fadeTime);
+ 
+            }, itemInterval);
+        }
+    };
+ 
+    InfiniteRotator.init();
+ 
+});       
+</script> 

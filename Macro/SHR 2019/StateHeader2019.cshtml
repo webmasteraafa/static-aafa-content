@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using statehonorroll19.PetaPoco.Models
+@using statehonorroll19.PetaPoco.Repository
+@{
+     Layout = null;
+     var statename = @CurrentPage.stateName;
+    
+     
+}
+<div class="main_logo_box">
+        <div class="logo_box"><img alt="State Honor Roll 2016 logo&amp;" src="/media/2453/aafa_statehonorroll_2019.png" /></div>
+        @foreach(var SH in StateHead.GetHeader(@statename))
+        {
+        <div class="state_data_box">
+           <h2>@SH.statename</h2>
+           @foreach (var SH2 in State.GetHeadData(@statename))
+           {
+           <p>
+                    Overall, @SH2.statename meets
+                    @if (@SH2.total_cp < 10)
+                    {
+                        @SH2.total_cpc;
+                    }
+                    else
+                    {
+                        @SH2.total_cp;
+                    }
+                    of 23 core policy standards and
+                  
+                    @if (@SH2.total_ci < 10)
+                    {
+                        @SH2.total_cic;
+                    }
+                    else
+                    {
+                        @SH2.total_ci;
+                    }
+                    of 13 extra credit indicators.
+                    
+               Below are the standards that @SH.statename meets.
+                </p>
+           
+           
+           
+           }
+        </div>
+
+            <div class="state_box"><img src="@SH.imageurl" alt="@SH.statename"/></div>
+            
+        }        
+        </div>
+         
+        <div style="clear:both">&nbsp;</div>
+
+        <p>
+            The 2019 State Honor Roll of Asthma and Allergy Policies for Schools ranks the states with the best public policies for people with asthma, food allergies, anaphylaxis and related allergic diseases in U.S. elementary, middle and high schools.<br />
+            <a href="/state-honor-roll/">Back to main State Honor Roll page</a>
+        </p>

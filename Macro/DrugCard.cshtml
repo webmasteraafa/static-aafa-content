@@ -1,0 +1,40 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using AsthmaMedicines.PetaPoco.Models
+@using AsthmaMedicines.PetaPoco.Repository
+@using System
+
+@{
+    var Idno = Request.QueryString["id"];
+     int DrugId = Int32.Parse(Idno);
+    var Info = Medicine.GetById(DrugId);
+}
+<div style="width:90%">
+
+   
+  <h3>@Info.DrugName</h3> <p style="float:right">@Html.Raw(@Info.Picture)</p>
+  
+       <p><b>Brand:</b> @Info.Brand<br>        
+       <b>Medicine Use:</b> @Info.MedicineUse<br>
+           <b>Type of Medicine:</b> @Info.TypeMedicine<br>  
+           <b>Form:</b> @Info.Form<br>
+           <b>Possible Side Effects</b>:<br> @Html.Raw(@Info.PossibleSideEffects)
+         </p>
+        
+        @if (@Info.Indications != null)
+        {
+        <div> <b>Indications</b>:<br>
+        @Html.Raw(@Info.Indications)
+        </div>
+        }
+         <div><b>Prescribing Info:</b> @Html.Raw(@Info.PrescribingInfo)
+          
+        </div>
+          
+          @if (@Info.Notes != null)
+          {
+            <p><b>Notes:</b> @Info.Notes
+            </p>
+          }
+           
+</div>
+

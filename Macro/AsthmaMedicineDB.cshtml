@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using AsthmaMedicines.PetaPoco.Models
+@using AsthmaMedicines.PetaPoco.Repository
+@{
+    Layout = null;
+
+}
+<div class="headerSection">
+           <div class="headerDrug">
+              <h3>Drug Information</h3>
+            </div>
+            <div class="headerSideEffects">
+               <h3>Possible Side Effects</h3>
+             </div>
+             <div class="headerImage">
+                <h3>Image</h3>
+              </div>
+          </div>
+@foreach (var Medicines in Medicine.GetAll())
+{
+   <div class="itemSection">
+    <div class="itemDrug">
+        <p>
+            <strong>Drug Name:</strong>
+            @Medicines.DrugName
+            <br style="line-height:24px" />
+            <strong>Brand:</strong>
+            @Medicines.Brand
+            <br style="line-height:24px" />
+            <strong>Medicine Use:</strong>
+            @Medicines.MedicineUse
+            <br style="line-height:24px" />
+            <strong>Type of Medicine:</strong>
+            @Medicines.TypeMedicine
+            <br style="line-height:24px" />
+            <strong>Form:</strong>
+            @Medicines.Form
+            <br style="line-height:24px" />
+            <strong>Prescribing Information:</strong>
+           @Html.Raw(@Medicines.PrescribingInfo)
+            <br style="line-height:24px" />
+            <span style="font-size:12px">
+                <strong>Notes:</strong>
+                @Medicines.Notes
+            </span>
+        </p>
+    </div>
+    <div class="itemSideEffets">
+       @Html.Raw( @Medicines.PossibleSideEffects)
+    </div>
+    <div class="itemImage">
+       @Html.Raw( @Medicines.Picture)
+    </div>
+</div>
+<div style="clear:both"></div>
+<hr />
+}

@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    //get all children of type 'owl_items'
+    var slides = @CurrentPage.Children.Where("DocumentTypeAlias == \"owl_items\"");
+    
+}
+
+    <div class="owl-carousel owl-theme" style="background-color: rgb(239, 239, 239);">
+
+        @foreach (var slide in @slides)
+        {
+            //Fallback: Ignore slide when no image was uploaded,
+            //else the slide would cause a server error.
+            if (@slide.owlImage != null)
+            {
+                
+                  <div class="owl-item">
+                    <img src="@slide.mediaLink" alt="@slide.name"/>
+                    <h2><strong>@slide.sliderHeader</strong></h2>
+                     @Html.Raw(@slide.sliderText)
+                    </div>
+            }
+        }
+   
+    </div>

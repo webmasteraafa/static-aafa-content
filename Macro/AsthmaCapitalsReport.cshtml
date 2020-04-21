@@ -1,0 +1,62 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using AsthmaCapitals.PetaPoco.Models
+@using AsthmaCapitals.PetaPoco.Repository
+@{
+    Layout = null;
+    var bg = "";
+}
+
+<div class="AcWrapper">
+<p><img src="https://www.aafa.org/media/2400/chart-topper-updated.png" width="80%"></p>
+<table class="AcTable" cellpadding="5">
+    
+    <tr valign="middle">
+     
+    <td style="background-color:#aed6ce; text-align:center; width:18%">
+        <p style="font-size:16px; margin-top:0px; padding-top:4px; text-align:center;"><strong>   
+        2019<br>National<br> Rankings</strong></p>
+    </td>
+    <td style="background-color:#d5c7de; text-align:center; width:15%">
+        <p style="font-size:16px; margin-top:0px; padding-top:4px; text-align:center;"><strong>  Overall </strong></p>
+    </td>
+    <td style="background-color:#c3b0ce; text-align:center; width:40%">
+        <p style="font-size:16px; margin-top:0px; padding-top:4px; text-align:center;"><strong>  Metropolitan Area</strong></p>
+        
+    <td>
+    
+</tr>
+
+
+    @foreach (var acap in AsthmaCapitals.GetCapitalList())
+    {
+    if ((@acap.Ranking % 2) == 0)
+        {
+          bg = "#e3e6e6";
+        }
+        else
+        {
+          bg = "#ffffff";
+        }
+        <tr style="background-color:@bg;"><td style="text-align:center;"><strong>@acap.Ranking</strong></td>
+        @if (@acap.Overall == "worse")
+            {
+                <td style="text-align:center; border-left:1px solid #000"><img src="https://www.aafa.org/media/2395/redsquare.png" width="15px"/></td>
+            }
+            @if (@acap.Overall == "average")
+            {
+             <td style="text-align:center; border-left:1px solid #000"><img src="https://www.aafa.org/media/2397/yellowtriangle.png" width="15px"/></td>
+             }
+            @if (@acap.Overall == "better")  
+            {
+                <td style="text-align:center; border-left:1px solid #000"><img src="https://www.aafa.org/media/2396/greencircle.png" width="15px"/></td>
+            }
+        <td style="padding-left:10px; border-left:1px solid #000;"> @acap.MetropolitianArea</td>
+        </tr>
+        
+    }
+    <tr><td></td><td><a id="AsthmaBelts"></a></td><td></td></tr>
+</table> </div>
+   
+   
+    
+    

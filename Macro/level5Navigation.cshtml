@@ -1,0 +1,13 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{Html.RenderPartial(
+        "NavIt",
+        Model.Content,
+        new ViewDataDictionary(this.ViewData) { 
+            { "maxLevel", 5}, 
+            { "allExpanded", false },
+            { "skipHome", true },
+            { "startLevel", 4},
+        }
+);}
+
+

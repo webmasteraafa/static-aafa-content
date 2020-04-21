@@ -1,0 +1,15 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    //get all children of type 'slide_item'
+    var pdfs = @CurrentPage.Children.Where("DocumentTypeAlias == \"pDFList\"");
+    
+}
+ @foreach (var npdf in @pdfs)
+ {
+    <p><a rel="noopener noreferrer" href="@npdf.pDFLink" target="_blank");">@npdf.linkName</a><img style="width: 24px;" src="/media/pdf-24x24.png" alt="Download PDF" />  (@npdf.pDFDate)</p>
+}
+         
+    
+ 
+
+   

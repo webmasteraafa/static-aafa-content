@@ -1,0 +1,206 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using statehonorroll19.PetaPoco.Models
+@using statehonorroll19.PetaPoco.Repository
+@{
+    var statename = @CurrentPage.stateName;
+     var counter_s = 0;
+}
+<div class="main_heading_box19">
+                    <h3 style="color:#fff; margin-top:7px; margin-left:5px; text-transform:uppercase">School Environment Policies:</h3>
+                </div>
+@foreach (var States in State.GetSchoolData(@statename))
+{
+    <div class="sub_heading_box19">
+       <p style="margin-top:5px; margin-left:5px;">Meets @States.school_cpc of nine core policy standards in this category:</p>
+     </div>
+
+             <div class="shr">   <table class="data_tables19">
+                    <tbody>
+                        <tr>
+                            @if (@States.Q15 == "YES")
+                             {
+                            <td class="grey_box19">15.&nbsp;State has mandated that all schools must have indoor air quality (IAQ) management policies.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box19">15.&nbsp;State has mandated that all schools must have indoor air quality (IAQ) management policies.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                            }
+                             </tr>
+                        <tr>
+                            @if (@States.Q16 == "YES")
+                             {
+                            <td class="grey_box19">16.&nbsp;State has adopted a policy requiring that districts and schools conduct periodic inspections of heating, ventilation and air conditioning (HVAC) system &amp; other items important in asthma/allergy management.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box19">16.&nbsp;State has adopted a policy requiring that districts and schools conduct periodic inspections of heating, ventilation and air conditioning (HVAC) system &amp; other items important in asthma/allergy management.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                            }
+                       </tr>
+                        <tr>
+                             @if (@States.Q17 == "YES")
+                             {
+                            <td class="grey_box19">17.&nbsp;State has IAQ policies that include specific components important in asthma/allergy management (HVAC, HEPA, carpeting, pesticide use).</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box19">17.&nbsp;State has IAQ policies that include specific components important in asthma/allergy management (HVAC, HEPA, carpeting, pesticide use).</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                            }
+                            </tr>
+                        <tr>
+                            @if (@States.Q18 == "YES")
+                             {
+                            <td class="grey_box19">18.&nbsp;State recommends/requires that districts or schools use Integrated Pest Management (IPM) techniques OR ban use of pesticides inside school.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                            }
+                             else
+                             {
+                            <td class="no_color_box19">18.&nbsp;State recommends/requires that districts or schools use Integrated Pest Management (IPM) techniques OR ban use of pesticides inside school.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                            }
+                           </tr>
+                        <tr>
+                            @if (@States.Q19 == "YES")
+                               {
+                                <td class="grey_box19">19.&nbsp;State requires schools to notify parents of upcoming pesticide applications.</td>
+                                <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                                    }
+                            else {
+                            <td class="no_color_box19">19.&nbsp;State requires schools to notify parents of upcoming pesticide applications.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                             }
+                             </tr>
+                        <tr>
+                             @if (@States.Q20 == "YES")
+                               {
+                                <td class="grey_box19">20.&nbsp;State limits school bus idling time and establishes proximity restrictions.</td>
+                                <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                                    }
+                            else {
+                            <td class="no_color_box19">20.&nbsp;State limits school bus idling time and establishes proximity restrictions.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                             }
+                        </tr> 
+                        <tr>@if (@States.Q21 == "YES")
+                        {
+
+                            <td class="grey_box19">21.&nbsp;All smoking is prohibited in school buildings and on school grounds.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }
+                        else
+                        {
+                            <td class="no_color_box19">21.&nbsp;All smoking is prohibited in school buildings and on school grounds.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+                        }
+                         </tr>
+                        <tr>@if (@States.Q22 == "YES")
+                        {
+
+                            <td class="grey_box19">22.&nbsp;All smoking is prohibited on school buses and at school-related functions.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }
+                        else
+                        {
+                            <td class="no_color_box19">22.&nbsp;All smoking is prohibited on school buses and at school-related functions.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+
+                        }
+                        </tr>
+                        <tr>@if (@States.Q23 == "YES")
+                        {
+
+                            <td class="grey_box19">23.&nbsp;Tobacco-use prevention is required in health education curriculum.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }
+                        else
+                        {
+                            <td class="no_color_box19">23.&nbsp;Tobacco-use prevention is required in health education curriculum.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+
+                        }
+                        </tr>
+                    </tbody>
+                </table></div>
+
+                <div class="sub_heading_box19">
+                    <p style="margin-top:5px; margin-left:5px;">Meets @States.school_cic of five extra credit indicators in this category:</p>
+                </div>
+<div class="shr">
+                <table class="data_tables19">
+                    <tbody>
+                        <tr>@if (@States.QI == "YES")
+                        {
+
+                            <td class="grey_box19">I.&nbsp;State makes funding or resources available for technical IAQ assistance to schools.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }
+                        else
+                        {
+                            <td class="no_color_box19">I.&nbsp;State makes funding or resources available for technical IAQ assistance to schools.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+
+                        }
+                        </tr>
+                         <tr>@if (@States.QJ == "YES")
+                        {
+
+                            <td class="grey_box19">J.&nbsp;State recommends standards and programs to promote environmentally preferable materials for school construction, maintenance and cleaning.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }else
+                        {
+                            <td class="no_color_box19">J.&nbsp;State recommends standards and programs to promote environmentally preferable materials for school construction, maintenance and cleaning.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+
+                        }
+                        </tr>  
+                        <tr>@if (@States.QK == "YES")
+                        {
+
+                            <td class="grey_box19">K.&nbsp;State requires school facility design standards that include low emission construction materials, pollutant source controls, durable and easy to clean surfaces and floors, moisture/mold controls.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }else
+                        {
+                            <td class="no_color_box19">K.&nbsp;State requires school facility design standards that include low emission construction materials, pollutant source controls, durable and easy to clean surfaces and floors, moisture/mold controls.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+
+                        }
+                        </tr>
+                        <tr>@if (@States.QL == "YES")
+                        {
+
+                            <td class="grey_box19">L.&nbsp;State has implemented or actively promotes diesel school bus engine retrofitting program.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }else
+                        {
+                            <td class="no_color_box19">L.&nbsp;State has implemented or actively promotes diesel school bus engine retrofitting program.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+                        }
+                        </tr>
+                    <tr>@if (@States.QM == "YES")
+                        {
+
+                            <td class="grey_box19">M.&nbsp;State requires districts or schools to provide tobacco-use-cessation services to students.</td>
+                            <td class="grey_check19"><img alt="" src="/media/1976/checkmark24x24.png" /></td>
+                        }else
+                        {
+                            <td class="no_color_box19">M.&nbsp;State requires districts or schools to provide tobacco-use-cessation services to students.</td>
+                            <td class="no_check19"><img alt="" src="/media/2454/x-24x24-2019.png" /></td>
+
+
+                        }
+                        </tr>
+                     
+                    </tbody>
+                </table></div>
+}

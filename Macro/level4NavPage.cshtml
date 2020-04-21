@@ -1,0 +1,7 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+<ul>
+    @foreach (var item in CurrentPage.Children)
+    {
+        <li>@item.Name</li>
+    }
+</ul>

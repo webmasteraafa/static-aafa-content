@@ -1,0 +1,53 @@
+﻿
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using statehonorroll.PetaPoco.Models
+@using statehonorroll.PetaPoco.Repository
+@{
+    Layout = null;
+    var statename = @CurrentPage.Name;
+
+}
+
+@foreach (var States in State.GetStateInfo(statename))
+{
+    <div class="main_logo_box">
+        <div class="logo_box"><img alt="State Honor Roll 2016 logo&amp;" src="/media/1917/SHR-Logo-2016.png" /></div>
+
+        <div class="state_data_box">
+            <h2>@States.statename</h2>
+            <p>
+                    Overall, @States.statename meets
+                    @if (@States.total_cp < 10)
+                    {
+                        @States.total_cpc;
+                    }
+                    else
+                    {
+                        @States.total_cp;
+                    }
+                    of 23 core policy standards and
+                  
+                    @if (@States.total_ci < 10)
+                    {
+                        @States.total_cic;
+                    }
+                    else
+                    {
+                        @States.total_ci;
+                    }
+                    of 13 extra credit indicators
+                </p>
+                
+            
+            </div>
+
+            <div class="state_box"><img alt="ARIZONA state icon" src="@States.imageurl" /></div>
+        </div>
+
+        <div style="clear:both">&nbsp;</div>
+
+        <p>
+            The 2016 State Honor Roll of Asthma and Allergy Policies for Schools ranks the states with the best public policies for people with asthma, food allergies, anaphylaxis and related allergic diseases in U.S. elementary, middle and high schools.<br />
+            <a href="/state-honor-roll/">Back to main State Honor Roll page</a>
+        </p>
+    }

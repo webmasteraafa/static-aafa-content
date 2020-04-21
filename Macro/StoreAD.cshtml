@@ -1,0 +1,66 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+<style type="text/css">
+#rotating-item-wrapper {
+    position: relative;
+    width: 180px;
+    height: 150px;
+}
+.rotating-item {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+</style>
+<div id="rotating-item-wrapper" style="margin: 0 10px;">
+    <div>
+          
+          <a href="https://www.aafa.org/store" class="t-shirt"><img class="rotating-item" src="https://www.aafa.org/media/2499/aafaonlinestore-180x150-adwk1.png" alt="T-shirt-ad"></a>
+           <a href="https://www.aafa.org/store" class="med-bag"><img class="rotating-item" src="https://www.aafa.org/media/2500/aafaonlinestore-180x150-adwk2.png" alt="Medicine-Bag-ad"></a>               
+                </div>
+	</div>
+<script>       
+        
+ $(window).load(function() { //start after HTML, images have loaded
+ 
+    var InfiniteRotator =
+    {
+        init: function()
+        {
+            //initial fade-in time (in milliseconds)
+            var initialFadeIn = 10000;
+ 
+            //interval between items (in milliseconds)
+            var itemInterval = 50000;
+ 
+            //cross-fade time (in milliseconds)
+            var fadeTime = 25000;
+ 
+            //count number of items
+            var numberOfItems = $('.rotating-item').length;
+ 
+            //set current item
+            var currentItem = 0;
+ 
+            //show first item
+            $('.rotating-item').eq(currentItem).fadeIn(initialFadeIn);
+ 
+            //loop through the items
+            var infiniteLoop = setInterval(function(){
+                $('.rotating-item').eq(currentItem).fadeOut(fadeTime);
+ 
+                if(currentItem == numberOfItems -1){
+                    currentItem = 0;
+                }else{
+                    currentItem++;
+                }
+                $('.rotating-item').eq(currentItem).fadeIn(fadeTime);
+ 
+            }, itemInterval);
+        }
+    };
+ 
+    InfiniteRotator.init();
+ 
+});       
+</script> 

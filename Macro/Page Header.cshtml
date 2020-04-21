@@ -1,0 +1,39 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+
+    @switch ((string)CurrentPage.DocumentTypeAlias){ 
+        case "landingPage":
+              <h1>@CurrentPage.Name</h1>
+            break;
+        case "textPage":
+        switch ((int)CurrentPage.Level)
+        {
+           case 3:
+           <h1>@CurrentPage.Parent.Name</h1>
+           break;
+           case 4:
+           <h1>@CurrentPage.Up(1).Name</h1>
+           break;
+           case 5:
+           <h1>@CurrentPage.Up(2).Name</h1>
+           break;
+           case 6:
+           <h1>@CurrentPage.Up(3).Name</h1>
+           break;
+           case 7:
+           <h1>@CurrentPage.Up(4).Name</h1>
+           break;
+        }
+        
+            break;
+        case "textOwlSlider":
+            <h1>@CurrentPage.Up(1).Name</h1>
+            break;
+        case "statePage":    
+            <h1>@CurrentPage.Up(2).Name</h1>
+            break;
+            
+            }
+            
+            
+            

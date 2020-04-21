@@ -1,0 +1,25 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    
+    var pagename = @CurrentPage.Name;
+
+}
+
+@if (@pagename == "State Honor Roll")
+{
+   <script src="/scripts/statehonorroll.js" type="text/javascript"></script>
+}
+@if (@pagename == "Support Groups")
+{
+    <script src="/scripts/supportgroups.js" type="text/javascript"></script>
+}
+@if (@pagename == "Healthy Home")
+{
+   <script src="/scripts/healthyHome.js" type="text/javascript"></script>
+
+}
+@if (@pagename == "State Honor Roll 2019")
+{
+   <script src="/scripts/statehonorroll19.js" type="text/javascript"></script>
+
+}

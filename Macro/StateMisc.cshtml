@@ -1,0 +1,47 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using statehonorroll.PetaPoco.Models
+@using statehonorroll.PetaPoco.Repository
+@{
+    Layout = null;
+    var statename = @CurrentPage.Name;
+
+}
+
+@foreach (var States in State.GetStateInfo(statename))
+{
+<div class="main_heading_box">
+<h3 style="color:#fff; margin-top:7px; margin-left:5px;">Policy Gaps:</h3>
+</div>
+
+<div class="shr"><table class="data_tables">
+	<tbody>
+		<tr>
+			<td class="policy_text">@States.policygap</td>
+		</tr>
+	</tbody>
+</table></div>
+
+<div class="shr"><div class="main_heading_box">
+<h3 style="color:#fff; margin-top:7px; margin-left:5px;">Noteworthy:</h3>
+</div>
+
+<table class="data_tables">
+	<tbody>
+		<tr>
+			<td style="padding:5px; width:90%; word-wrap:break-word">@Html.Raw(@States.noteworthy)</td>
+		</tr>
+	</tbody>
+</table></div>
+
+<div class="main_heading_box">
+<h3 style="color:#fff; margin-top:7px; margin-left:5px;">Sources:</h3>
+</div>
+
+<div class="shr"><table class="data_tables">
+	<tbody>
+		<tr>
+			<td class="no_color_box">@Html.Raw(@States.sources)</td>
+		</tr>
+	</tbody>
+</table></div>
+}

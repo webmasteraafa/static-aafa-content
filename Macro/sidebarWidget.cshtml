@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@{
+    //get all children of type 'widget_item'
+    var aafawidgets = @CurrentPage.Children.Where("DocumentTypeAlias == \"sidebarWidget\"");
+}
+<div class="widgetzone">
+@foreach (var aafawidget in @aafawidgets)
+{
+      <div class="widget @aafawidget.className">
+	  		
+	  @if ((@aafawidget.widgetHeader != "socialstrata") && (@aafawidget.widgetHeader != "store"))
+		{
+		<h4 class="widget-header">
+                    @aafawidget.widgetHeader
+                    <span class="pull-right"></span>
+                    </h4>
+		    
+		}	    
+	  	  <div class="widget-content" style="margin-top:15px"> 
+              @aafawidget.widgetContent  
+              </div>
+         
+       
+        </div> 
+}
+</div>
