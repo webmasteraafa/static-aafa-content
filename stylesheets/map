@@ -1,0 +1,4 @@
+.statereportbutton {height:60px; background-color:#C7D411; border:1px solid #C7D411; border-radius:10px 10px 10px 10px; }
+.statereportbutton a {text-decoration:none}
+.stateheader {font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif}
+.statedesc{font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif}
