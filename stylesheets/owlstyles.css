@@ -1,0 +1,132 @@
+.owl-prev {
+  float: left;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  position:absolute;
+  top:30%;
+  left:-3px;    
+}
+
+.owl-next {
+  float: right;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  	position:absolute;
+  top:30%;
+  right:7px; 
+}
+@media screen and (max-width:900px)
+{
+.owl-prev {
+  float: left;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  position:absolute;
+  top:20%;
+  left:-3px;    
+}
+
+.owl-next {
+  float: right;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  	position:absolute;
+  top:20%;
+  right:7px; 
+}
+}
+@media screen and (max-width:800px)
+{
+.owl-prev {
+  float: left;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  position:absolute;
+  top:20%;
+  left:-3px;    
+}
+
+.owl-next {
+  float: right;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  	position:absolute;
+  top:20%;
+  right:7px; 
+}
+
+}
+@media screen and (max-width:768px)
+{
+.owl-prev {
+  float: left;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  position:absolute;
+  top:10%;
+  left:-3px;    
+}
+
+.owl-next {
+  float: right;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 20px;
+  	position:absolute;
+  top:10%;
+  right:7px; 
+}
+}
+.owl-dots {
+  counter-reset: slides-num 22;
+  /* Initialize counter. */
+  position: absolute;
+  top: 60%;
+  left: 90%;
+  margin-top: 15px;
+  display:none;
+}
+.owl-dots:after {
+  content: counter(slides-num);
+  /* get total number of items - more info on http://www.sitepoint.com/a-little-known-way-to-replace-some-scripts-with-css-counters/ */
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 700;
+  vertical-align: middle;
+  padding-left: 5px;
+}
+	.owl-theme .owl-nav {background:none }
+.owl-theme .owl-dot {
+  display: inline-block;
+  counter-increment: slides-num -1;
+  /* Increment counter */
+  margin-right: 1.5px;
+}
+.owl-theme .owl-dots .owl-dot span {
+  display: none;
+}
+.owl-theme .owl-dot.active:before {
+  content: counter(slides-num) " /";
+  /* Use the same counter to get current item. */
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+	.owl-item p{height:100%}	
+.owl-theme	.owl-item h2 {margin-top:10px;}
+	
+	
+.info {
+  text-align: center;
+  margin-top: 110px;
+}	
